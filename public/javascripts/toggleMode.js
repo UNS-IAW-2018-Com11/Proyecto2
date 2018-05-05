@@ -14,13 +14,13 @@ function checkMode() {
 	var file;
 	if (estilo === null) {
 		localStorage.setItem("estilo", "classic");
-		file = "css/estilo.css";
+		file = "stylesheets/estilo.css";
 		estilo = "classic";
 	} else {
 		if (estilo === "classic") {
-			file = "css/estilo.css";
+			file = "stylesheets/estilo.css";
 		} else {
-			file = "css/estilo-alt.css";
+			file = "stylesheets/estilo-alt.css";
 		}
 	}
 
@@ -60,8 +60,8 @@ function toggleMode() {
 	newlink.setAttribute("rel", "stylesheet");
 	newlink.setAttribute("type", "text/css");
 
-	var file = localStorage.getItem("estilo") === "classic" ? "css/estilo.css"
-			: "css/estilo-alt.css";
+	var file = localStorage.getItem("estilo") === "classic" ? "stylesheets/estilo.css"
+			: "stylesheets/estilo-alt.css";
 
 	newlink.setAttribute("href", file);
 	document.getElementsByTagName("head").item(0)

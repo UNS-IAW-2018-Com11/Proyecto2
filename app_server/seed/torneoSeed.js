@@ -5,22 +5,22 @@ mongoose.connect('mongodb://localhost:27017/torneos');
 
 var torneos = [
  new torneosModel({
-  nombre: 'torneo1',
-  formato: 'liga',
+  nombre: 'LAB - Division 1',
+  formato: 'Liga',
   cantTeams: 5,
   cantPlayers: 12,
   estado: 'activo'
  }),
  new torneosModel({
-  nombre: 'torneo2',
-  formato: 'liga',
+  nombre: 'LAB - Division 2',
+  formato: 'Liga',
   cantTeams: 7,
   cantPlayers: 12,
   estado: 'activo'
  }),
  new torneosModel({
-  nombre: 'torneo3',
-  formato: 'liga',
+  nombre: 'Copa Empleados de Comercio 2018',
+  formato: 'Liga',
   cantTeams: 9,
   cantPlayers: 12,
   estado: 'activo'
