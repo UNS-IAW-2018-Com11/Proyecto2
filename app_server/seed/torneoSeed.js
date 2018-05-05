@@ -7,7 +7,7 @@ var torneos = [
  new torneosModel({
   nombre: 'LAB - Division 1',
   formato: 'Liga',
-  cantTeams: 5,
+  cantTeams: 4,
   cantPlayers: 12,
   estado: 'activo'
  }),

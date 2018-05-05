@@ -27,7 +27,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //routes
 app.use('/index', indexRouter);
-app.use('/torneo/:id', torneoRouter);
+app.use('/torneo', torneoRouter);
 app.use('/contact', contactRouter);
 app.use('/users', usersRouter);
 app.use('/', mainRouter);
