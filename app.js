@@ -6,8 +6,9 @@ var logger = require('morgan');
 var mongoose = require('mongoose');
 
 //creo "routers"
+var mainRouter = require('./app_server/routes/main');
 var indexRouter = require('./app_server/routes/index');
-//var torneoRouter = require('./app_server/routes/torneo');
+var torneoRouter = require('./app_server/routes/torneo');
 var contactRouter = require('./app_server/routes/contact');
 var usersRouter = require('./app_server/routes/users');
 
@@ -24,11 +25,12 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-
-//app.use('/torneo', torneoRouter);
+//routes
+app.use('/index', indexRouter);
+app.use('/torneo/:id', torneoRouter);
 app.use('/contact', contactRouter);
 app.use('/users', usersRouter);
-app.use('/', indexRouter);
+app.use('/', mainRouter);
 
 /*
 // catch 404 and forward to error handler

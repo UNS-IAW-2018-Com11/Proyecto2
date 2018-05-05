@@ -12,10 +12,10 @@
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
 	crossorigin="anonymous">
 	
-<link rel="stylesheet" type="text/css" href="stylesheets/estilo.css">
+<link rel="stylesheet" type="text/css" href="../stylesheets/estilo.css">
 <link rel="stylesheet" type="text/css"
 	href="stylesheets/footer-basic-centered.css">
-<link rel="stylesheet" type="text/css" href="stylesheets/demo.css">
+<link rel="stylesheet" type="text/css" href="../stylesheets/demo.css">
 
 <title>Tournament creator v2.0</title>
 </head>
@@ -60,7 +60,7 @@
 					<div class="list-group" id="torneosactivos">
 					
 						{{#each torneos}} 
-						<a onclick="" href="" class="list-group-item">
+						<a onclick="" href="/torneo/:id" class="list-group-item">
 							<h4 class="list-group-item-heading">{{this.nombre}}</h4>
 							<p class="descripcion">{{this.formato}}</p>
 							<div class="torneo_slogan" style="padding-right: 0px;">
@@ -99,7 +99,7 @@
 	
 	<!-- <script src="javascripts/javascript.js"></script> -->
 	<!-- <script src="javascripts/torneos.js"></script> -->
-	<script src="javascripts/toggleMode.js"></script>
+	<script src="../javascripts/toggleMode.js"></script>
 
 </body>
 </html>
