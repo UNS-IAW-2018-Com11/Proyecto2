@@ -1,0 +1,562 @@
+{
+	"torneo": [
+		{
+			"nombre": "LAB - division 1",
+			"formato": "league",
+			"cantTeams": 4,
+			"cantPlayers": 5,
+			"estado": "creado",
+			"equipo": [
+				{
+					"nombre": "pichichen",
+					"id": 0,
+					"GP": 0,
+					"W": 0,
+					"L": 0,
+					"PF": 0,
+					"PC": 0,
+					"Pts": 0,
+					"jugador": [
+						{
+							"nombre": "Manu Ginobili",
+							"DNI": "21777999",
+							"edad": 40
+						},
+						{
+							"nombre": "Fabricio Oberto",
+							"DNI": "21755888",
+							"edad": 41
+						},
+						{
+							"nombre": "Facundo Campazzo",
+							"DNI": "36456225",
+							"edad": 26
+						},
+						{
+							"nombre": "Marcos Delia",
+							"DNI": "33564789",
+							"edad": 28
+						},
+						{
+							"nombre": "Lucio Redivo",
+							"DNI": "38900123",
+							"edad": 23
+						}
+					]
+				},
+				{
+					"nombre": "dollar blue",
+					"id": 1,
+					"GP": 0,
+					"W": 0,
+					"L": 0,
+					"PF": 0,
+					"PC": 0,
+					"Pts": 0,
+					"jugador": [
+						{
+							"nombre": "Manu Ginobili",
+							"DNI": "21777999",
+							"edad": 40
+						},
+						{
+							"nombre": "Fabricio Oberto",
+							"DNI": "21755888",
+							"edad": 41
+						},
+						{
+							"nombre": "Facundo Campazzo",
+							"DNI": "36456225",
+							"edad": 26
+						},
+						{
+							"nombre": "Marcos Delia",
+							"DNI": "33564789",
+							"edad": 28
+						},
+						{
+							"nombre": "Lucio Redivo",
+							"DNI": "38900123",
+							"edad": 23
+						}
+					]
+				},
+				{
+					"nombre": "wd40",
+					"id": 2,
+					"GP": 0,
+					"W": 0,
+					"L": 0,
+					"PF": 0,
+					"PC": 0,
+					"Pts": 0,
+					"jugador": [
+						{
+							"nombre": "Manu Ginobili",
+							"DNI": "21777999",
+							"edad": 40
+						},
+						{
+							"nombre": "Fabricio Oberto",
+							"DNI": "21755888",
+							"edad": 41
+						},
+						{
+							"nombre": "Facundo Campazzo",
+							"DNI": "36456225",
+							"edad": 26
+						},
+						{
+							"nombre": "Marcos Delia",
+							"DNI": "33564789",
+							"edad": 28
+						},
+						{
+							"nombre": "Lucio Redivo",
+							"DNI": "38900123",
+							"edad": 23
+						}
+					]
+				},
+				{
+					"nombre": "hot potatoes",
+					"id": 3,
+					"GP": 0,
+					"W": 0,
+					"L": 0,
+					"PF": 0,
+					"PC": 0,
+					"Pts": 0,
+					"jugador": [
+						{
+							"nombre": "Manu Ginobili",
+							"DNI": "21777999",
+							"edad": 40
+						},
+						{
+							"nombre": "Fabricio Oberto",
+							"DNI": "21755888",
+							"edad": 41
+						},
+						{
+							"nombre": "Facundo Campazzo",
+							"DNI": "36456225",
+							"edad": 26
+						},
+						{
+							"nombre": "Marcos Delia",
+							"DNI": "33564789",
+							"edad": 28
+						},
+						{
+							"nombre": "Lucio Redivo",
+							"DNI": "38900123",
+							"edad": 23
+						}
+					]
+				}
+			],
+			"partidos": [
+				{
+					"fecha": [
+						{
+							"local": "pichichen",
+							"visitante": "dollar blue",
+							"puntosLocal": 0,
+							"puntosVisitante": 0,
+							"fecha": "10-04-2018",
+							"estado": "pendiente"
+						},
+						{
+							"local": "hot potatoes",
+							"visitante": "wd40",
+							"puntosLocal": 0,
+							"puntosVisitante": 0,
+							"fecha": "10-04-2018",
+							"estado": "pendiente"
+						}
+					]
+				},
+				{
+					"fecha": [
+						{
+							"local": "wd40",
+							"visitante": "pichichen",
+							"puntosLocal": 0,
+							"puntosVisitante": 0,
+							"fecha": "17-04-2018",
+							"estado": "pendiente"
+						},
+						{
+							"local": "dollar blue",
+							"visitante": "hot potatoes",
+							"puntosLocal": 0,
+							"puntosVisitante": 0,
+							"fecha": "17-04-2018",
+							"estado": "pendiente"
+						}
+					]
+				},
+				{
+					"fecha": [
+						{
+							"local": "wd40",
+							"visitante": "dollar blue",
+							"puntosLocal": 0,
+							"puntosVisitante": 0,
+							"fecha": "24-04-2018",
+							"estado": "pendiente"
+						},
+						{
+							"local": "hot potatoes",
+							"visitante": "pichichen",
+							"puntosLocal": 0,
+							"puntosVisitante": 0,
+							"fecha": "24-04-2018",
+							"estado": "pendiente"
+						}
+					]
+				},
+				{
+					"fecha": [
+						{
+							"local": "pichichen",
+							"visitante": "dollar blue",
+							"puntosLocal": 0,
+							"puntosVisitante": 0,
+							"fecha": "10-04-2018",
+							"estado": "pendiente"
+						},
+						{
+							"local": "hot potatoes",
+							"visitante": "wd40",
+							"puntosLocal": 0,
+							"puntosVisitante": 0,
+							"fecha": "10-04-2018",
+							"estado": "pendiente"
+						}
+					]
+				},
+				{
+					"fecha": [
+						{
+							"local": "wd40",
+							"visitante": "pichichen",
+							"puntosLocal": 0,
+							"puntosVisitante": 0,
+							"fecha": "17-04-2018",
+							"estado": "pendiente"
+						},
+						{
+							"local": "dollar blue",
+							"visitante": "hot potatoes",
+							"puntosLocal": 0,
+							"puntosVisitante": 0,
+							"fecha": "17-04-2018",
+							"estado": "pendiente"
+						}
+					]
+				},
+				{
+					"fecha": [
+						{
+							"local": "wd40",
+							"visitante": "dollar blue",
+							"puntosLocal": 0,
+							"puntosVisitante": 0,
+							"fecha": "24-04-2018",
+							"estado": "pendiente"
+						},
+						{
+							"local": "hot potatoes",
+							"visitante": "pichichen",
+							"puntosLocal": 0,
+							"puntosVisitante": 0,
+							"fecha": "24-04-2018",
+							"estado": "pendiente"
+						}
+					]
+				}
+			]
+		},
+		{
+			"nombre": "LAB - division 2",
+			"formato": "league",
+			"cantTeams": 4,
+			"cantPlayers": 5,
+			"estado": "activo",
+			"equipo": [
+				{
+					"nombre": "perdon molten",
+					"id": 0,
+					"GP": 2,
+					"W": 0,
+					"L": 2,
+					"PF": 122,
+					"PC": 111,
+					"Pts": 2,
+					"jugador": [
+						{
+							"nombre": "Manu Ginobili",
+							"DNI": "21777999",
+							"edad": 40
+						},
+						{
+							"nombre": "Fabricio Oberto",
+							"DNI": "21755888",
+							"edad": 41
+						},
+						{
+							"nombre": "Facundo Campazzo",
+							"DNI": "36456225",
+							"edad": 26
+						},
+						{
+							"nombre": "Marcos Delia",
+							"DNI": "33564789",
+							"edad": 28
+						},
+						{
+							"nombre": "Lucio Redivo",
+							"DNI": "38900123",
+							"edad": 23
+						}
+					]
+				},
+				{
+					"nombre": "soy khea bro",
+					"id": 1,
+					"GP": 2,
+					"W": 2,
+					"L": 0,
+					"PF": 132,
+					"PC": 104,
+					"Pts": 4,
+					"jugador": [
+						{
+							"nombre": "Manu Ginobili",
+							"DNI": "21777999",
+							"edad": 40
+						},
+						{
+							"nombre": "Fabricio Oberto",
+							"DNI": "21755888",
+							"edad": 41
+						},
+						{
+							"nombre": "Facundo Campazzo",
+							"DNI": "36456225",
+							"edad": 26
+						},
+						{
+							"nombre": "Marcos Delia",
+							"DNI": "33564789",
+							"edad": 28
+						},
+						{
+							"nombre": "Lucio Redivo",
+							"DNI": "38900123",
+							"edad": 23
+						}
+					]
+				},
+				{
+					"nombre": "alcoholicos conocidos",
+					"id": 2,
+					"GP": 2,
+					"W": 1,
+					"L": 1,
+					"PF": 107,
+					"PC": 114,
+					"Pts": 3,
+					"jugador": [
+						{
+							"nombre": "Manu Ginobili",
+							"DNI": "21777999",
+							"edad": 40
+						},
+						{
+							"nombre": "Fabricio Oberto",
+							"DNI": "21755888",
+							"edad": 41
+						},
+						{
+							"nombre": "Facundo Campazzo",
+							"DNI": "36456225",
+							"edad": 26
+						},
+						{
+							"nombre": "Marcos Delia",
+							"DNI": "33564789",
+							"edad": 28
+						},
+						{
+							"nombre": "Lucio Redivo",
+							"DNI": "38900123",
+							"edad": 23
+						}
+					]
+				},
+				{
+					"nombre": "cuestion de peso",
+					"id": 3,
+					"GP": 2,
+					"W": 1,
+					"L": 1,
+					"PF": 96,
+					"PC": 98,
+					"Pts": 3,
+					"jugador": [
+						{
+							"nombre": "Manu Ginobili",
+							"DNI": "21777999",
+							"edad": 40
+						},
+						{
+							"nombre": "Fabricio Oberto",
+							"DNI": "21755888",
+							"edad": 41
+						},
+						{
+							"nombre": "Facundo Campazzo",
+							"DNI": "36456225",
+							"edad": 26
+						},
+						{
+							"nombre": "Marcos Delia",
+							"DNI": "33564789",
+							"edad": 28
+						},
+						{
+							"nombre": "Lucio Redivo",
+							"DNI": "38900123",
+							"edad": 23
+						}
+					]
+				}
+			],
+			"partidos": [
+				{
+					"fecha": [
+						{
+							"local": "perdon molten",
+							"visitante": "soy khea bro",
+							"puntosLocal": 55,
+							"puntosVisitante": 72,
+							"fecha": "10-04-2018",
+							"estado": "finalizado"
+						},
+						{
+							"local": "cuestion de peso",
+							"visitante": "alcoholicos conocidos",
+							"puntosLocal": 47,
+							"puntosVisitante": 38,
+							"fecha": "10-04-2018",
+							"estado": "finalizado"
+						}
+					]
+				},
+				{
+					"fecha": [
+						{
+							"local": "alcoholicos conocidos",
+							"visitante": "perdon molten",
+							"puntosLocal": 69,
+							"puntosVisitante": 38,
+							"fecha": "17-04-2018",
+							"estado": "finalizado"
+						},
+						{
+							"local": "soy khea bro",
+							"visitante": "cuestion de peso",
+							"puntosLocal": 60,
+							"puntosVisitante": 49,
+							"fecha": "17-04-2018",
+							"estado": "finalizado"
+						}
+					]
+				},
+				{
+					"fecha": [
+						{
+							"local": "alcoholicos conocidos",
+							"visitante": "soy khea bro",
+							"puntosLocal": 0,
+							"puntosVisitante": 0,
+							"fecha": "24-04-2018",
+							"estado": "pendiente"
+						},
+						{
+							"local": "cuestion de peso",
+							"visitante": "perdon molten",
+							"puntosLocal": 0,
+							"puntosVisitante": 0,
+							"fecha": "24-04-2018",
+							"estado": "pendiente"
+						}
+					]
+				},
+				{
+					"fecha": [
+						{
+							"local": "perdon molten",
+							"visitante": "soy khea bro",
+							"puntosLocal": 0,
+							"puntosVisitante": 0,
+							"fecha": "10-04-2018",
+							"estado": "pendiente"
+						},
+						{
+							"local": "cuestion de peso",
+							"visitante": "alcoholicos conocidos",
+							"puntosLocal": 0,
+							"puntosVisitante": 0,
+							"fecha": "10-04-2018",
+							"estado": "pendiente"
+						}
+					]
+				},
+				{
+					"fecha": [
+						{
+							"local": "alcoholicos conocidos",
+							"visitante": "perdon molten",
+							"puntosLocal": 0,
+							"puntosVisitante": 0,
+							"fecha": "17-04-2018",
+							"estado": "pendiente"
+						},
+						{
+							"local": "soy khea bro",
+							"visitante": "cuestion de peso",
+							"puntosLocal": 0,
+							"puntosVisitante": 0,
+							"fecha": "17-04-2018",
+							"estado": "pendiente"
+						}
+					]
+				},
+				{
+					"fecha": [
+						{
+							"local": "alcoholicos conocidos",
+							"visitante": "soy khea bro",
+							"puntosLocal": 0,
+							"puntosVisitante": 0,
+							"fecha": "24-04-2018",
+							"estado": "pendiente"
+						},
+						{
+							"local": "cuestion de peso",
+							"visitante": "perdon molten",
+							"puntosLocal": 0,
+							"puntosVisitante": 0,
+							"fecha": "24-04-2018",
+							"estado": "pendiente"
+						}
+					]
+				}
+			]
+		}
+	]
+}
