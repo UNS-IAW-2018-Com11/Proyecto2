@@ -7,9 +7,22 @@ var partidoSchema = new Schema({
 	visitante: {type: String, required:true},
 	puntosLocal:{type: Number, required:true},
 	puntosVisitante:{type: Number, required:true},
-	fecha:{type: String, required:true},
-	estado:{type: String, required:true},
-	torneo:{type: String, required:true}
+	estado:{type: String, required:true}
 });
 
-module.exports = mongoose.model('fechasModel', partidoSchema);
+var partidosModel = mongoose.model('partidosModel', partidoSchema);
+
+
+var fechaSchema = new Schema({
+	fecha:{type: String, required:true},
+	torneo:{type: String, required:true},
+	partidos:[ {type: Schema.Types.ObjectId, ref: 'partidosModel'}]
+});
+
+var fechasModel = mongoose.model('fechasModel', fechaSchema);
+
+
+module.exports = {
+	fechasModel: fechasModel,
+	partidosModel: partidosModel
+}

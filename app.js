@@ -4,7 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var mongoose = require('mongoose');
-var hbs = require('express-handlebars');
+var hbs = require('hbs');
 
 //creo "routers"
 var mainRouter = require('./app_server/routes/main');
@@ -20,6 +20,9 @@ mongoose.connect('mongodb://localhost:27017/torneos');
 //app.engine('hbs', hbs({extname: 'hbs', defaultLayout: 'layout', layoutsDir: __dirname + '/app_server/views'}));
 app.set('views', path.join(__dirname, 'app_server' ,'views'));
 app.set('view engine', 'hbs');
+hbs.registerHelper('inc',function(value,options){
+	return parseInt(value) + 1;	
+});
 
 app.use(logger('dev'));
 app.use(express.json());

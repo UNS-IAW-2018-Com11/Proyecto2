@@ -9,6 +9,7 @@ require('../models/fecha');
 const torneosModel = mongoose.model('torneosModel');
 const equiposModel = mongoose.model('equiposModel');
 const fechasModel = mongoose.model('fechasModel');
+const partidosModel = mongoose.model('partidosModel');
 
 const index = function (req, res) {
 	
@@ -24,7 +25,8 @@ const index = function (req, res) {
 					//en caso de error
 					res.render('error', { error : err });    
 				}else {
-					fechasModel.find({torneo: torneo.nombre}, function(err, fechas){
+					fechasModel.find({torneo: torneo.nombre})
+						.populate('partidos').exec((err, fechas) => {
 						if(err){
 							//en caso de error
 							res.render('error', {error:err});
@@ -37,6 +39,7 @@ const index = function (req, res) {
 								torneo: torneo,
 								equipos: equipos,
 								fechas: fechas
+								
 							});
 							}	
 					})		
