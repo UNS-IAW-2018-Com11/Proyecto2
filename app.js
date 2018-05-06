@@ -4,6 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var mongoose = require('mongoose');
+var hbs = require('express-handlebars');
 
 //creo "routers"
 var mainRouter = require('./app_server/routes/main');
@@ -16,6 +17,7 @@ var app = express();
 mongoose.connect('mongodb://localhost:27017/torneos');
 
 // view engine setup
+//app.engine('hbs', hbs({extname: 'hbs', defaultLayout: 'layout', layoutsDir: __dirname + '/app_server/views'}));
 app.set('views', path.join(__dirname, 'app_server' ,'views'));
 app.set('view engine', 'hbs');
 
@@ -26,7 +28,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 //routes
-app.use('/index', indexRouter);
+app.use('/index', indexRouter); 
 app.use('/torneo', torneoRouter);
 app.use('/contact', contactRouter);
 app.use('/users', usersRouter);

@@ -7,7 +7,7 @@ require('../models/torneo');
 const torneos = mongoose.model('torneosModel');
 
 const index = function (req, res) { 
-	torneos.find().exec((err, torneos) => {
+	torneos.find().exec((err, torneo) => {
     if (err) { 
 		//en caso de error
 		res.render('error', { error : err });    
@@ -16,7 +16,7 @@ const index = function (req, res) {
 		res.render('index', 
 		{
 			title: 'Torneos Activos',
-			torneos: torneos
+			torneos: torneo
 		});
     }
 	})

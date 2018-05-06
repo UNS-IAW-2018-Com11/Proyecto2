@@ -67,7 +67,24 @@
 							</div>
 							<div class="col-1"></div>
 							<div class="col-6">
-								<!-- ACA VAN LOS PARTIDOS -->								
+								<!-- ACA VAN LOS PARTIDOS -->	
+								<div style="display: block;">
+									<div class="row">
+										<table class="table table-hover table-condensed border">
+											<thead>
+												<tr>
+													<th>Local</th>
+													<th>VS</th>
+													<th>Visitante</th>
+												</tr>
+											</thead>
+											<tbody id="table-posiciones">
+											{{#each fechas as |item index|}}
+												<tr><td>{{@index}}</td><td><a href="" onclick="">{{this.local}}</a></td><td><a href="" onclick="">{{this.visitante}}</td><td>{{this.fecha}}</td></tr>
+											{{/each}}
+											</table>				
+									</div>
+								</div>								
 							</div>
 						</div>
 					</div>

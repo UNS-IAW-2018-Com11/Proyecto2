@@ -3,36 +3,48 @@ mongoose.connect('mongodb://localhost:27017/torneos');
 
 require('../models/torneo');
 require('../models/equipo');
+require('../models/fecha');
 
 //creo el modelo a partir del scheme para poder trabajar
-const torneos = mongoose.model('torneosModel');
-const equipos = mongoose.model('equiposModel');
+const torneosModel = mongoose.model('torneosModel');
+const equiposModel = mongoose.model('equiposModel');
+const fechasModel = mongoose.model('fechasModel');
 
 const index = function (req, res) {
 	
 	var torneoID = req.params.id;
 		
-	torneos.findById(torneoID, function(err, torneos){
+	torneosModel.findById(torneoID, function(err, torneo){
 		if (err) { 
 			//en caso de error
 			res.render('error', { error : err });    
 		}else {		
-			equipos.find({},function(err, equipos){
+			equiposModel.find({torneo: torneo.nombre},function(err, equipos){
 				if (err) { 
 					//en caso de error
 					res.render('error', { error : err });    
-				}else {				
-					//paso la view y un objeto	
-					res.render('torneo', 
-					{	
-						title: torneos.nombre,
-						torneos: torneos,
-						equipos: equipos
-					});
-				}	
-			})		
-		}	
-	})	
+				}else {
+					fechasModel.find({torneo: torneo.nombre}, function(err, fechas){
+						if(err){
+							//en caso de error
+							res.render('error', {error:err});
+						}
+						else{
+							//paso la view y un objeto	
+							res.render('torneo', 
+							{	
+								title: torneo.nombre,
+								torneo: torneo,
+								equipos: equipos,
+								fechas: fechas
+							});
+							}	
+					})		
+					}	
+			})	
+			}
+		 
+	})
 };
 
 module.exports = { index }
