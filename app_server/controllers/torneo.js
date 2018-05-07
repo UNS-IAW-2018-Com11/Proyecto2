@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/torneos');
+//mongoose.connect('mongodb://localhost:27017/torneos');
 
+require('../models/db');
 require('../models/torneo');
 require('../models/equipo');
 require('../models/fecha');
