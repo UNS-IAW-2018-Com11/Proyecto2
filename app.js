@@ -3,22 +3,25 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var mongoose = require('mongoose');
 var hbs = require('hbs');
-var session = require('express-session');
+var passportSetup = require('./app_server/config/passportSetup');
+var cookieSession = require('cookie-session');
+var keys = require('./app_server/config/keys');
 var passport = require('passport');
-var flash =require('connect-flash');
-require('./app_server/models/db');
+
 
 //creo "routers"
-var mainRouter = require('./app_server/routes/main');
 var indexRouter = require('./app_server/routes/index');
 var torneoRouter = require('./app_server/routes/torneo');
 var contactRouter = require('./app_server/routes/contact');
 var usersRouter = require('./app_server/routes/users');
-var signupRouter = require('./app_server/routes/signup');
+var authRouter = require('./app_server/routes/auth');
+
+require('./app_server/models/db');
 
 var app = express();
-require('./app_server/config/passport');
+
 
 // view engine setup
 //app.engine('hbs', hbs({extname: 'hbs', defaultLayout: 'layout', layoutsDir: __dirname + '/app_server/views'}));
@@ -39,21 +42,24 @@ hbs.registerHelper('ifCond', function(v1, v2, options) {
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(session({secret: 'keysession', resave: false, saveUninitialized: false}));
-app.use(flash());
+
+app.use(cookieSession({
+	maxAge:24*60*60*1000, //1 dia en milisegundos
+	keys:[keys.session.cookieKey]
+}));
+
+//init passport
 app.use(passport.initialize());
 app.use(passport.session());
+
 app.use(express.static(path.join(__dirname, 'public')));
 
-
 //routes
-app.use('/index', indexRouter); 
+app.use('/', indexRouter); 
 app.use('/torneo', torneoRouter);
 app.use('/contact', contactRouter);
-app.use('/user/signup', signupRouter);
 app.use('/users', usersRouter);
-app.use('/', mainRouter);
+app.use('/auth', authRouter);
 
 
 /*
@@ -73,6 +79,5 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 */
-
 
 module.exports = app;
