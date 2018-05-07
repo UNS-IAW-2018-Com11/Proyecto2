@@ -1,8 +1,8 @@
 var mongoose = require('mongoose');
 
-const dbURI = process.env.MLAB_URI;
+//const dbURI = process.env.MLAB_URI;
 
-mongoose.connect(dbURI);
+mongoose.connect('mongodb://IAW2018:1234@ds117250.mlab.com:17250/torneos');
 
 var db = mongoose.connection;
 

@@ -44,5 +44,5 @@ passport.use('facebook.signup', new FacebookStrategy({
 		});
 	});
 	
-	}
+	});
 }));
