@@ -20,8 +20,16 @@ mongoose.connect('mongodb://localhost:27017/torneos');
 //app.engine('hbs', hbs({extname: 'hbs', defaultLayout: 'layout', layoutsDir: __dirname + '/app_server/views'}));
 app.set('views', path.join(__dirname, 'app_server' ,'views'));
 app.set('view engine', 'hbs');
+
+//HBS helpers
 hbs.registerHelper('inc',function(value,options){
 	return parseInt(value) + 1;	
+});
+hbs.registerHelper('ifCond', function(v1, v2, options) {
+  if(v1 === v2) {
+    return options.fn(this);
+  }
+  return options.inverse(this);
 });
 
 app.use(logger('dev'));

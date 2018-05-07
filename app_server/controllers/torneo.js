@@ -25,7 +25,7 @@ const index = function (req, res) {
 					//en caso de error
 					res.render('error', { error : err });    
 				}else {
-					fechasModel.find({torneo: torneo.nombre})
+					fechasModel.find({torneo: torneo.nombre}).sort({_id:1})
 						.populate('partidos').exec((err, fechas) => {
 						if(err){
 							//en caso de error
@@ -44,7 +44,7 @@ const index = function (req, res) {
 							}	
 					})		
 					}	
-			})	
+			}).sort({Pts: -1})	
 			}
 		 
 	})
