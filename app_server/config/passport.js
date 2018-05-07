@@ -16,7 +16,7 @@ passport.deserializeUser(function(id,done){
 passport.use('facebook.signup', new FacebookStrategy({
 		clientID        : '2038875279719668',
         clientSecret    : 'b18c8293524fbec137f22a0cff4a88d4',
-		callbackURL : 'http://localhost:3000/auth/facebook/callback'	
+		callbackURL : 'https://iawp2.herokuapp.com/'	
 }, function(access_token, refresh_token, profile, done){
 	
 	process.nextTick(function() {
