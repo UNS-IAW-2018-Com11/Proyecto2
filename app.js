@@ -52,7 +52,6 @@ app.use('/auth', authRouter);
 app.use('/admin', adminRouter);
 app.use('/add-teams', addTeamsRouter);
 
-
 /*
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

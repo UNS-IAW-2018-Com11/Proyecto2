@@ -2,9 +2,9 @@ function confirm_team(nombre_torneo){
   //nombre del equipo
   var equipo;
   $('#formequipo input').each(function() {
-		var input = $(this);
-		equipo = input.val();
-	});
+    var input = $(this);
+    equipo = input.val();
+  });
 
   //obtengo los jugadores
   var jugador = {
@@ -14,68 +14,73 @@ function confirm_team(nombre_torneo){
   }
 
   var json_equipo = {
-		nombre:equipo,
-		GP:0,
-		W:0,
-		L:0,
-		PF:0,
-		PC:0,
-		Pts:0,
-		torneo: nombre_torneo,
-		jugadores:[]
-	};
+    nombre:equipo,
+    GP:0,
+    W:0,
+    L:0,
+    PF:0,
+    PC:0,
+    Pts:0,
+    torneo: nombre_torneo,
+    jugadores:[]
+  };
 
   $('#modalForm input').each(
-			function() {
-				var input = $(this);
-				switch (input.attr('name')) {
-				case "fname":
-					jugador.nombre = input.val();
-					break;
-				case "dni":
-					jugador.dni = input.val();
-					break;
-				case "edad":
-					edad = input.val();
-          jugador.edad = edad;
-          json_equipo.jugadores.push(jugador);
-				}
-			});
-      console.log(json_equipo);
-      closeAfterConfirm(equipo);
-}
+    function() {
+      var input = $(this);
+      switch (input.attr('name')) {
+        case "fname":
+        jugador.nombre = input.val();
+        break;
+        case "dni":
+        jugador.DNI = input.val();
+        break;
+        case "edad":
+        edad = input.val();
+        jugador.edad = edad;
+        json_equipo.jugadores.push(jugador);
+      }
+    });
 
+    // construct an HTTP request
+    var xhr = new XMLHttpRequest();
 
-function closeAfterConfirm(equipo){
+    var URL = '/add-teams';
+    xhr.open('POST', URL, true);
 
-  $('#mymodal').modal('hide');
+    xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
 
-  	var listaEquipos = document.getElementById("lista_equipos");
+    // send the collected data as JSON
+    xhr.send(JSON.stringify(json_equipo));
 
-  	var items = listaEquipos.childNodes;
-  	var listo = true;
+    closeAfterConfirm(equipo);
+  }
+
+  function closeAfterConfirm(equipo){
+    $('#mymodal').modal('hide');
+
+    var listaEquipos = document.getElementById("lista_equipos");
+
+    var items = listaEquipos.childNodes;
+    var listo = true;
     var todos = false;
-  	for (var i = 0; i < items.length && listo; i++) {
+    for (var i = 0; i < items.length && listo; i++) {
 
-        //If the node is an element node, the nodeType property will return 1.
-  		if (items[i].nodeType === 1) {
-  			//
-  			if (items[i].innerHTML === 'Add New Team<span class="badge badge-primary badge-pill" data-toggle="modal" data-target="#mymodal">+</span>') {
-  			  items[i].innerHTML = '<a>' + equipo + '</a>';
-  				listo = false;
-  			}
+      //If the node is an element node, the nodeType property will return 1.
+      if (items[i].nodeType === 1) {
+        //
+        if (items[i].innerHTML === 'Add New Team<span class="badge badge-primary badge-pill" data-toggle="modal" data-target="#mymodal">+</span>') {
+          items[i].innerHTML = '<a>' + equipo + '</a>';
+          listo = false;
+        }
         else{
           todos = true;
         }
-  		}
-  	}
+      }
+    }
 
     if(todos){
       var doc = document.getElementById("botonSave");
       doc.innerHTML = '<button type="button" class="btn btn-primary" onclick="insertTeams()">Save</button>';
     }
-}
-
-function insertTeams(){
-
-}
+  }

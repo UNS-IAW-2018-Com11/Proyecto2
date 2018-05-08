@@ -1,6 +1,5 @@
 var models = require('../models/equipo');
 var mongoose = require('mongoose');
-
 var keys = require('../config/keys');
 
 mongoose.connect(keys.mongo.dbURI);

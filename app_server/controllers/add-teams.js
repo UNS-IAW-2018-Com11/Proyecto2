@@ -10,6 +10,7 @@ var keys = require('../config/keys');
 //const torneos = mongoose.model('torneosModel');
 
 const view = function (req, res) {
+	//obtengo el torneo en el que participan los equipos
 	mongo.connect(keys.mongo.dbURI, function(err, database){
 		assert.equal(null,err);
 		const db = database.db('torneos');
