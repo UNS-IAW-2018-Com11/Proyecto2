@@ -41,11 +41,6 @@ const index = function (req, res) {
 			});//fin mongo.connect
 		})
 	});//fin mongo.connect
-
-
-
-
-
 };
 
 module.exports = { index }

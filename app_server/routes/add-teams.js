@@ -3,17 +3,14 @@ var router = express.Router();
 var mongo = require('mongodb').MongoClient;
 var assert = require('assert');
 var keys = require('../config/keys');
+var nombre_torneo;
 
 const ctrlTeams = require('../controllers/add-teams');
 /* GET home page. */
 router.get('/', ctrlTeams.view);
 
-//const ctrlTeamsDB = require('../controllers/teams-insert');
-//router.post('/', ctrlTeamsDB.db);
-
 router.post('/', function(req, res, next){
   //req.body => objeto JSON
-
   var equipoNuevo = {
   	nombre: req.body.nombre,
   	GP:0,
@@ -26,8 +23,7 @@ router.post('/', function(req, res, next){
   	jugadores:req.body.jugadores
   };
 
-  console.log(req.body.jugadores);
-
+  nombre_torneo = req.body.torneo;
 
   //insert players
   mongo.connect(keys.mongo.dbURI, function(err, database){
@@ -35,7 +31,6 @@ router.post('/', function(req, res, next){
     const db = database.db('torneos');
     db.collection("jugadoresmodels").insertMany(req.body.jugadores, function(err, res) {
       if (err) throw err;
-      console.log("Number of documents inserted: " + res.insertedCount);
       database.close();
       //insert teams
       mongo.connect(keys.mongo.dbURI, function(err, database){
@@ -52,5 +47,76 @@ router.post('/', function(req, res, next){
   res.status(200).end();
 
 });
+
+router.post('/insert-schedule', function(req, res, next){
+
+  var equiposBD = [];
+  //obtengo coleccion equipos con el nombre del torneo
+  mongo.connect(keys.mongo.dbURI, function(err, database){
+    assert.equal(null,err);
+    const db = database.db('torneos');
+    var cursor = db.collection('equiposmodels').find({torneo: nombre_torneo});
+
+    cursor.forEach(function(doc, err){
+      assert.equal(null, err);
+      equiposBD.push(doc);//push current item
+    }, function(){
+      database.close;
+      var equipos = [];
+      for(var i = 0; i<equiposBD.length; i++){
+        equipos.push(equiposBD[i].nombre);
+      }//En equipos tengo un arreglo equipos (su nombre)
+
+      //CREDITOS: https://github.com/clux/roundrobin +10 fav y reco
+      var robin = require('roundrobin');
+      var schedule = robin(equipos.length, equipos);
+      //en schedule tengo la matriz de partidos
+      //falta insertarlos en la BD
+      insert_scheduleDB(schedule, equipos);
+    })
+  });//fin mongo.connect
+
+  res.status(200).end();
+
+});
+
+function insert_scheduleDB(schedule, equipos){
+  var fechas = [];
+  for(var i=0; i < schedule.length; i++){
+    var partidos = [];
+    for(var j=0; j < schedule[i].length; j++){
+      var partido = {
+        local: schedule[i][j][0],
+        visitante: schedule[i][j][1],
+        puntosLocal:0,
+        puntosVisitante:0,
+        estado:'pendiente'
+      };
+      partidos.push(partido);
+    }//end for j
+    console.log('1era vez ');
+    console.log(partidos);
+    var fecha = {
+      fecha: i+1,
+      torneo: nombre_torneo,
+      partidos:partidos
+    };
+    console.log('2da vez ');
+    console.log(partidos);
+    fechas.push(fecha);
+  }//end for i
+  //ya tengo el objeto listo para pushear a la BD ('fechas')
+
+  //insert players
+  mongo.connect(keys.mongo.dbURI, function(err, database){
+    assert.equal(null,err);//chequeo errores
+    const db = database.db('torneos');
+    db.collection("fechasmodels").insertMany(fechas, function(err, res) {
+      if (err) throw err;
+      database.close();
+    });
+  });
+
+}
 
 module.exports = router;

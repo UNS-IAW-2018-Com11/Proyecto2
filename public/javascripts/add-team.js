@@ -2,8 +2,7 @@ function confirm_team(){
   //nombre del equipo
   var nombre_torneo = document.getElementById('torneo_nombre').innerHTML;
   nombre_torneo = nombre_torneo.trim();
-  console.log(nombre_torneo);
-
+  
   var equipo;
   $('#formequipo input').each(function() {
     var input = $(this);
@@ -87,4 +86,17 @@ function confirm_team(){
       var doc = document.getElementById("botonSave");
       doc.innerHTML = '<button type="button" class="btn btn-primary" onclick="insertTeams()">Save</button>';
     }
+  }
+
+  function insertTeams(){
+    // construct an HTTP request
+    var xhr = new XMLHttpRequest();
+
+    var URL = '/add-teams/insert-schedule';
+    xhr.open('POST', URL, true);
+
+    xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+
+    // send data
+    xhr.send('');
   }
