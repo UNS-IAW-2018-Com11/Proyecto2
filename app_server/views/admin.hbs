@@ -11,7 +11,7 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
 	crossorigin="anonymous">
-<link rel="stylesheet" type="text/css" href="css/estilo.css">
+<link rel="stylesheet" type="text/css" href="../stylesheets/estilo.css">
 
 <title>Tournament creator v1.0</title>
 </head>
@@ -19,7 +19,7 @@
 
 
 	<nav class="navbar  navbar-expand-lg fixed-top">
-		<a class="navbar-brand" href=""> <img src="images/liga.png"
+		<a class="navbar-brand" href="/"> <img src="images/liga.png"
 			width="30" height="30" alt=""> Tournament Generator
 		</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -32,11 +32,11 @@
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item active"><a class="nav-link"
-					href="index.ejs">Home <span class="sr-only">(current)</span>
+					href="/">Home <span class="sr-only">(current)</span>
 				</a></li>
 				<li class="nav-item"><a class="nav-link" href=""
 					onclick="alert('Tournament Generator IAW 2018 Beta')">About</a></li>
-				<li class="nav-item"><a class="nav-link" href="contact.ejs">Contact</a></li>
+				<li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
 			</ul>
 			<button class="btn btn-primary normal-mode" id="toggleButton"
 				type="submit" onclick="toggleMode()">Dark Mode</button>
@@ -52,14 +52,13 @@
 				<h3>Tournament info</h3>
 
 				<div class="containerAdmin">
-					<!-- <form action="/action_page.php"> -->
-					<form action="">
+					<form action="/admin/insert" method="post">
 						<label for="tname">Tournament Name</label> <input type="text"
 							id="tname" name="tname" placeholder="Tournament name..">
 						<label for="format">Tournament format</label> <select id="format"
 							name="format">
 							<option value="league">League</option>
-							<option value="knockout">Knockout</option>
+							<!--<option value="knockout">Knockout</option> -->
 							<!-- <option value="both">League and Knockout</option> -->
 						</select>
 						<div>
@@ -82,35 +81,12 @@
 									onclick=increaseby2()>
 							</div>
 						</div>
-						<input type="button" value="Submit" onclick="newForm()">
+						<input style="background-color:#02025b" type="submit" value="Submit">
 					</form>
 				</div>
 				<hr>
 				<hr>
 				<hr>
-				<div class="containerAdmin">
-					<h1>Summary (AJAX)</h1>
-					<p>summary1</p>
-					<p>summary2</p>
-					<p>summary3</p>
-				</div>
-
-				<div>
-					<section id="delete">
-						<button type="button" class="btn btn-danger" onclick="deleteAll()">Delete
-							all tournaments</button>
-					</section>
-
-					<section id="archivo">
-						<form name="formulario">
-							<p>
-								Seleccionar archivo de datos<br> <input type="file"
-									onclick="saveFile()" name="archivos" id="archivos">
-							</p>
-						</form>
-					</section>
-				</div>
-
 			</div>
 			<!-- div de la columna 8 -->
 
@@ -131,7 +107,7 @@
 		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
 		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
 		crossorigin="anonymous"></script>
-	<script src="scripts/javascript.js"></script>
+	<script src="../javascripts/admin.js"></script>
 	<script id="modal-html" type="text/html">
     	<div class="modal fade" id="mymodal" tabindex="-1" role="dialog"
 					aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -144,14 +120,9 @@
 									<span aria-hidden="true">&times;</span>
 								</button>
 							</div>
-		
-
 
 			<div class="modal-body" id="cuerpo-modal">
-			<!-- cuerpo del modal -->	
-				
-
-
+			<!-- cuerpo del modal -->
 			</div>
 			<div class="modal-footer">
 								<button type="button" class="btn btn-secondary"
@@ -162,6 +133,7 @@
 					</div>
 				</div>
 	</script>
-	<script src="scripts/toggleMode.js"></script>
+	<script src="../javascripts/add-team.js"></script>
+	<script src="../javascripts/toggleMode.js"></script>
 </body>
 </html>

@@ -9,10 +9,10 @@ router.get('/login',(req,res) => {
 	res.render('login');
 });
 
-//auth with google, /auth from app.js 
-//cuando vaya a /auth/google, passport va a tomar el control 
+//auth with google, /auth from app.js
+//cuando vaya a /auth/google, passport va a tomar el control
 router.get('/google', passport.authenticate('google',{
-	scope:['profile']	
+	scope:['profile']
 }));
 
 //auth logout
@@ -21,7 +21,7 @@ router.get('/logout',(req,res) => {
 	//la funcion logout es del passport
 	req.logout();
 	res.redirect('/contact');
-	
+
 });
 
 //callback route for google to redirect to, the /auth part comes from app.js
@@ -34,9 +34,17 @@ router.get('/google/redirect', passport.authenticate('google'),(req,res) => {
 		//Estas en el callback DE GOOGLE  (no de passport) despues de que acepta el login con tu cuenta de google
 		//Aca google te envia en el link un codigo que passport tiene que usar para recuperar los datos
 		//el user que viene en el req es el user que nos da el metodo deserialize de passport desde la cookie en el passportSetup
-		//res.send(req.user);	
-		res.redirect('/');
-		
+		//res.send(req.user);
+		if(req.user.power === 'admin')
+			res.redirect('/admin');
+		else{
+			if(req.user.power === 'editor')
+				res.redirect('/editor');
+			else {
+				res.redirect('/');
+			}
+		}
+
 });
 
 

@@ -17,11 +17,12 @@ var torneoRouter = require('./app_server/routes/torneo');
 var contactRouter = require('./app_server/routes/contact');
 var usersRouter = require('./app_server/routes/users');
 var authRouter = require('./app_server/routes/auth');
+var adminRouter = require('./app_server/routes/admin');
+var addTeamsRouter = require('./app_server/routes/add-teams');
 
 require('./app_server/models/db');
 
 var app = express();
-
 
 // view engine setup
 //app.engine('hbs', hbs({extname: 'hbs', defaultLayout: 'layout', layoutsDir: __dirname + '/app_server/views'}));
@@ -30,7 +31,7 @@ app.set('view engine', 'hbs');
 
 //HBS helpers
 hbs.registerHelper('inc',function(value,options){
-	return parseInt(value) + 1;	
+	return parseInt(value) + 1;
 });
 hbs.registerHelper('ifCond', function(v1, v2, options) {
   if(v1 === v2) {
@@ -55,11 +56,13 @@ app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
 
 //routes
-app.use('/', indexRouter); 
+app.use('/', indexRouter);
 app.use('/torneo', torneoRouter);
 app.use('/contact', contactRouter);
 app.use('/users', usersRouter);
 app.use('/auth', authRouter);
+app.use('/admin', adminRouter);
+app.use('/add-teams', addTeamsRouter);
 
 
 /*

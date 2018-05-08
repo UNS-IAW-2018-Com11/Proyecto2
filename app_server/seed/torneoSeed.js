@@ -1,7 +1,9 @@
 var torneosModel = require('../models/torneo');
 
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/torneos');
+var keys = require('../config/keys');
+
+mongoose.connect(keys.mongo.dbURI);
 
 var torneos = [
  new torneosModel({
@@ -39,5 +41,5 @@ for(var i = 0; i < torneos.length; i++){
 }
 
 function exit(){
- mongoose.disconnect(); 
+ mongoose.disconnect();
 }

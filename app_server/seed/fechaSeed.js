@@ -1,20 +1,22 @@
 var models = require('../models/fecha');
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/torneos');
+var keys = require('../config/keys');
+
+mongoose.connect(keys.mongo.dbURI);
 
 var fechas = [
 	new models.fechasModel(
 	{
 		fecha:'10-04-2018',
 		torneo: 'LAB - Division 1',
-		partidos: [ 
+		partidos: [
 				 new models.partidosModel({
 					local:'pichicheeen',
 					visitante:'dollar blue',
 					puntosLocal:0,
 					puntosVisitante:0,
 					estado:'pendiente'
-					}), 
+					}),
 					new models.partidosModel({
 					local:'hot potatoes',
 					visitante:'wd40',
@@ -22,20 +24,20 @@ var fechas = [
 					puntosVisitante:0,
 					estado:'pendiente'
 					})
-					]	
+					]
 	}),
 	new models.fechasModel(
 	{
 		fecha:'17-04-2018',
 		torneo: 'LAB - Division 1',
-		partidos: [ 
+		partidos: [
 					new models.partidosModel({
 					local:'wd40',
 					visitante:'pichicheeen',
 					puntosLocal:0,
 					puntosVisitante:0,
 					estado:'pendiente'
-					}), 
+					}),
 					new models.partidosModel({
 					local:'dollar blue',
 					visitante:'hot potatoes',
@@ -43,20 +45,20 @@ var fechas = [
 					puntosVisitante:0,
 					estado:'pendiente'
 					})
-					]	
+					]
 	}),
 	new models.fechasModel(
 	{
 		fecha:'24-04-2018',
 		torneo: 'LAB - Division 1',
-		partidos: [ 
+		partidos: [
 					new models.partidosModel({
 					local:'wd40',
 					visitante:'dollar blue',
 					puntosLocal:0,
 					puntosVisitante:0,
 					estado:'pendiente'
-					}), 
+					}),
 					new models.partidosModel({
 					local:'hot potatoes',
 					visitante:'pichicheeen',
@@ -64,20 +66,20 @@ var fechas = [
 					puntosVisitante:0,
 					estado:'pendiente'
 					})
-					]	
-	}),	
+					]
+	}),
 	new models.fechasModel(
 	{
 		fecha:'30-04-2018',
 		torneo: 'LAB - Division 1',
-		partidos: [ 
+		partidos: [
 					new models.partidosModel({
 					local:'dollar blue',
 					visitante:'pichicheeen',
 					puntosLocal:0,
 					puntosVisitante:0,
 					estado:'pendiente'
-					}), 
+					}),
 					new models.partidosModel({
 					local:'wd40',
 					visitante:'hot potatoes',
@@ -85,20 +87,20 @@ var fechas = [
 					puntosVisitante:0,
 					estado:'pendiente'
 					})
-					]	
+					]
 	}),
 	new models.fechasModel(
 	{
 		fecha:'04-05-2018',
 		torneo: 'LAB - Division 1',
-		partidos: [ 
+		partidos: [
 					new models.partidosModel({
 					local:'pichicheeen',
 					visitante:'wd40',
 					puntosLocal:0,
 					puntosVisitante:0,
 					estado:'pendiente'
-										}), 
+										}),
 					new models.partidosModel({
 					local:'hot potatoes',
 					visitante:'dollar blue',
@@ -106,7 +108,7 @@ var fechas = [
 					puntosVisitante:0,
 					estado:'pendiente'
 					})
-					]	
+					]
 	}),
 	new models.fechasModel(
 	{
@@ -118,7 +120,7 @@ var fechas = [
 					puntosLocal:0,
 					puntosVisitante:0,
 					estado:'pendiente'
-					}), 
+					}),
 					new models.partidosModel({
 					local:'pichicheeen',
 					visitante:'hot potatoes',
@@ -126,7 +128,7 @@ var fechas = [
 					puntosVisitante:0,
 					estado:'pendiente'
 					})
-					]	
+					]
 	})
 ];
 
@@ -144,5 +146,5 @@ for(var i = 0; i < fechas.length; i++){
 }
 
 function exit(){
- mongoose.disconnect(); 
+ mongoose.disconnect();
 }

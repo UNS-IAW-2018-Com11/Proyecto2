@@ -61,34 +61,34 @@
 											{{#each equipos as |item index|}}
 												<tr><td>{{inc @index}}</td><td><a href="" onclick="">{{this.nombre}}</a></td><td>{{this.GP}}</td><td>{{this.W}}</td><td>{{this.L}}</td><td>{{this.PF}}</td><td>{{this.PC}}</td><td>{{this.Pts}}</td></tr>
 											{{/each}}
-											</table>				
+											</table>
 									</div>
-								</div>							
+								</div>
 							</div>
 							<div class="col-1"></div>
 							<div class="col-6">
-								<!-- ACA VAN LOS PARTIDOS -->	
+								<!-- ACA VAN LOS PARTIDOS -->
 								<div class="row">
    <table class="table table-hover table-condensed border" id="table-partidos">
     	{{#each fechas}}
 	   <thead>
          <tr>
-            <th colspan="3">Fecha {{inc @index}} : {{this.fecha}}</th>			 
+            <th colspan="3">Fecha {{inc @index}} : {{this.fecha}}</th>
          </tr>
       </thead>
       <tbody>
 		  {{#each this.partidos}}
          <tr>
-            <td align="left"><a href="/equipo" onclick="">{{this.local}} 
+            <td align="left"><a href="/equipo" onclick="">{{this.local}}
 			{{#ifCond this.estado "finalizado"}}
-				({{this.puntosLocal}})				
+				({{this.puntosLocal}})
 			{{/ifCond}}
 
 			</a></td>
             <td align="center">vs</td>
             <td align="right"><a href="/equipo" onclick="">
 			{{#ifCond this.estado "finalizado"}}
-				({{this.puntosVisitante}})				
+				({{this.puntosVisitante}})
 			{{/ifCond}}
 			{{this.visitante}}</a></td>
          </tr>
@@ -97,8 +97,8 @@
 	   {{/each}}
    </table>
 </div>
-								
-						
+
+
 							</div>
 						</div>
 					</div>

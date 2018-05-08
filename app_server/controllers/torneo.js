@@ -12,19 +12,21 @@ const fechasModel = mongoose.model('fechasModel');
 const partidosModel = mongoose.model('partidosModel');
 
 const index = function (req, res) {
-	
+
 	var torneoID = req.params.id;
-		
-	torneosModel.findById(torneoID, function(err, torneo){
-		if (err) { 
+	torneosModel.findById(torneoID,function(err, torneo){
+		if(err){
 			//en caso de error
-			res.render('error', { error : err });    
-		}else {		
-			equiposModel.find({torneo: torneo.nombre},function(err, equipos){
-				if (err) { 
+			res.render('error', { error : err });
+		}
+		else{
+			equiposModel.find({torneo: torneo.nombre}).sort({Pts:-1})
+			.populate('jugadores').exec((err, equipos) => {
+				if (err) {
 					//en caso de error
-					res.render('error', { error : err });    
-				}else {
+					res.render('error', { error : err });
+				}
+				else{
 					fechasModel.find({torneo: torneo.nombre}).sort({_id:1})
 						.populate('partidos').exec((err, fechas) => {
 						if(err){
@@ -32,22 +34,24 @@ const index = function (req, res) {
 							res.render('error', {error:err});
 						}
 						else{
-							//paso la view y un objeto	
-							res.render('torneo', 
-							{	
+							//paso la view y un objeto
+							res.render('torneo',
+							{
 								title: torneo.nombre,
 								torneo: torneo,
 								equipos: equipos,
 								fechas: fechas
-								
 							});
-							}	
-					})		
-					}	
-			}).sort({Pts: -1})	
-			}
-		 
+							}
+					})
+				}
+			})//exec equipos
+		}
 	})
-};
+
+	}//corchete find torneos
+
+
+
 
 module.exports = { index }
