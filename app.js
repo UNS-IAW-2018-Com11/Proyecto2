@@ -10,7 +10,6 @@ var cookieSession = require('cookie-session');
 var keys = require('./app_server/config/keys');
 var passport = require('passport');
 
-
 //creo "routers"
 var indexRouter = require('./app_server/routes/index');
 var torneoRouter = require('./app_server/routes/torneo');
@@ -28,24 +27,6 @@ var app = express();
 //app.engine('hbs', hbs({extname: 'hbs', defaultLayout: 'layout', layoutsDir: __dirname + '/app_server/views'}));
 app.set('views', path.join(__dirname, 'app_server' ,'views'));
 app.set('view engine', 'hbs');
-
-//HBS helpers
-hbs.registerHelper('inc',function(value,options){
-	return parseInt(value) + 1;
-});
-hbs.registerHelper('ifCond', function(v1, v2, options) {
-  if(v1 === v2) {
-    return options.fn(this);
-  }
-  return options.inverse(this);
-});
-
-hbs.registerHelper('times', function(n, block) {
-    var accum = '';
-    for(var i = 0; i < n; ++i)
-        accum += block.fn(i);
-    return accum;
-});
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -89,5 +70,23 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 */
+
+//HBS helpers
+hbs.registerHelper('inc',function(value,options){
+	return parseInt(value) + 1;
+});
+hbs.registerHelper('ifCond', function(v1, v2, options) {
+  if(v1 === v2) {
+    return options.fn(this);
+  }
+  return options.inverse(this);
+});
+
+hbs.registerHelper('times', function(n, block) {
+    var accum = '';
+    for(var i = 0; i < n; ++i)
+        accum += block.fn(i);
+    return accum;
+});
 
 module.exports = app;

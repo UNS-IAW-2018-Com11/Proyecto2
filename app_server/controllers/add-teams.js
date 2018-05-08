@@ -9,7 +9,7 @@ var keys = require('../config/keys');
 //creo el modelo a partir del scheme para poder trabajar
 //const torneos = mongoose.model('torneosModel');
 
-const index = function (req, res) {
+const view = function (req, res) {
 	mongo.connect(keys.mongo.dbURI, function(err, database){
 		assert.equal(null,err);
 		const db = database.db('torneos');
@@ -22,10 +22,13 @@ const index = function (req, res) {
 			result.push(doc);//push current item
 		}, function(){
 			db.close;
-			res.render('add-teams', {result: result});
+			res.render('add-teams', {
+				result: result,
+				torneo: req.query.nombre
+			});
 		})
 
 	});
 };
 
-module.exports = { index }
+module.exports = { view }

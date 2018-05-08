@@ -1,32 +1,47 @@
-function confirm_team(){
-
-  //nombre del equipo aparentemente
+function confirm_team(nombre_torneo){
+  //nombre del equipo
   var equipo;
   $('#formequipo input').each(function() {
 		var input = $(this);
 		equipo = input.val();
 	});
-  console.log(equipo);
-  //obtengo los jugadores aparentemente
-  var jugador = '';
+
+  //obtengo los jugadores
+  var jugador = {
+    nombre:'',
+    DNI:'',
+    edad: 0,
+  }
+
+  var json_equipo = {
+		nombre:equipo,
+		GP:0,
+		W:0,
+		L:0,
+		PF:0,
+		PC:0,
+		Pts:0,
+		torneo: nombre_torneo,
+		jugadores:[]
+	};
+
   $('#modalForm input').each(
 			function() {
 				var input = $(this);
 				switch (input.attr('name')) {
 				case "fname":
-					jugador = '{ "nombre":"' + input.val() + '",';
+					jugador.nombre = input.val();
 					break;
 				case "dni":
-					jugador += '"DNI":"' + input.val() + '",';
+					jugador.dni = input.val();
 					break;
 				case "edad":
-					jugador += '"edad":' + input.val() + ' }';
-          console.log(jugador);
-			//		json_equipos.equipo[index_equipo].jugador.push(JSON
-				//			.parse(jugador));
+					edad = input.val();
+          jugador.edad = edad;
+          json_equipo.jugadores.push(jugador);
 				}
 			});
-
+      console.log(json_equipo);
       closeAfterConfirm(equipo);
 }
 
@@ -62,6 +77,5 @@ function closeAfterConfirm(equipo){
 }
 
 function insertTeams(){
-    
 
 }
