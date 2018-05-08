@@ -81,10 +81,18 @@ router.post('/insert-schedule', function(req, res, next){
 });
 
 function insert_scheduleDB(schedule, equipos){
+  //schedule es la matriz donde cada fila es una fecha y las columnas los partidos. A su vez cada partido es un arreglo de 2 elementos. [local , visitante]
+
   var fechas = [];
-  for(var i=0; i < schedule.length; i++){
+
+  for(var i=0; i < schedule.length; i++){ //por cada fecha:
+
     var partidos = [];
-    for(var j=0; j < schedule[i].length; j++){
+
+    for(var j=0; j < schedule[i].length; j++){ // por cada partido de la fecha
+
+      console.log("schedule ");
+      console.log(schedule[i][j]);
       var partido = {
         local: schedule[i][j][0],
         visitante: schedule[i][j][1],
@@ -92,20 +100,27 @@ function insert_scheduleDB(schedule, equipos){
         puntosVisitante:0,
         estado:'pendiente'
       };
+
       partidos.push(partido);
     }//end for j
-    console.log('1era vez ');
+
+    console.log("1era vez ");
     console.log(partidos);
     var fecha = {
       fecha: i+1,
       torneo: nombre_torneo,
       partidos:partidos
     };
-    console.log('2da vez ');
+    console.log("2da vez");
     console.log(partidos);
+    console.log("fecha");
+    console.log(fecha);
     fechas.push(fecha);
   }//end for i
   //ya tengo el objeto listo para pushear a la BD ('fechas')
+
+  console.log("fech2");
+  console.log(JSON.stringify(fechas));
 
   //insert players
   mongo.connect(keys.mongo.dbURI, function(err, database){
@@ -115,8 +130,7 @@ function insert_scheduleDB(schedule, equipos){
       if (err) throw err;
       database.close();
     });
-  });
-
+  }); //fin connect
 }
 
 module.exports = router;
