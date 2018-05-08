@@ -1,57 +1,51 @@
-const mongoose = require('mongoose');
-
-require('../models/db');
-require('../models/torneo');
-require('../models/equipo');
-require('../models/fecha');
-
-//creo el modelo a partir del scheme para poder trabajar
-const torneosModel = mongoose.model('torneosModel');
-const equiposModel = mongoose.model('equiposModel');
-const fechasModel = mongoose.model('fechasModel');
-const partidosModel = mongoose.model('partidosModel');
+var mongo = require('mongodb').MongoClient;
+var assert = require('assert');
+var keys = require('../config/keys');
 
 const index = function (req, res) {
 
-	var torneoID = req.params.id;
-	torneosModel.findById(torneoID,function(err, torneo){
-		if(err){
-			//en caso de error
-			res.render('error', { error : err });
-		}
-		else{
-			equiposModel.find({torneo: torneo.nombre}).sort({Pts:-1})
-			.populate('jugadores').exec((err, equipos) => {
-				if (err) {
-					//en caso de error
-					res.render('error', { error : err });
-				}
-				else{
-					fechasModel.find({torneo: torneo.nombre}).sort({_id:1})
-						.populate('partidos').exec((err, fechas) => {
-						if(err){
-							//en caso de error
-							res.render('error', {error:err});
-						}
-						else{
-							//paso la view y un objeto
-							res.render('torneo',
-							{
-								title: torneo.nombre,
-								torneo: torneo,
-								equipos: equipos,
-								fechas: fechas
-							});
-							}
-					})
-				}
-			})//exec equipos
-		}
-	})
+	var equipos = [];
+	var torneo = [];
 
-	}//corchete find torneos
+	//obtengo torneo con el id de la url
+	mongo.connect(keys.mongo.dbURI, function(err, database){
+		assert.equal(null,err);
+		const db = database.db('torneos');
+		//recupero el torneo con el id pasado por url
+		var cursor = db.collection('torneosmodels').find({nombre: req.params.id});
+		cursor.forEach(function(doc, err){
+			assert.equal(null, err);
+			torneo.push(doc);//push current item
+		}, function(){
+			database.close;
+			console.log(torneo[0]);
+			//obtengo coleccion equipos con el nombre del torneo
+			mongo.connect(keys.mongo.dbURI, function(err, database){
+				//console.log('ID: '+req.params.id);
+				assert.equal(null,err);
+				const db = database.db('torneos');
+				var cursor = db.collection('equiposmodels').find({torneo: torneo[0].nombre});
+
+				cursor.forEach(function(doc, err){
+					assert.equal(null, err);
+					equipos.push(doc);//push current item
+				}, function(){
+					database.close;
+					res.render('torneo', {
+						title: torneo[0].nombre,
+						torneo: torneo[0],
+						equipos: equipos,
+						fechas: {}
+					});
+				})
+			});//fin mongo.connect
+		})
+	});//fin mongo.connect
 
 
 
+
+
+};
 
 module.exports = { index }

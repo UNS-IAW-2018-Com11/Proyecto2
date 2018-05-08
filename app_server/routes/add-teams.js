@@ -28,24 +28,24 @@ router.post('/', function(req, res, next){
 
   console.log(req.body.jugadores);
 
-  //insert teams
-  mongo.connect(keys.mongo.dbURI, function(err, database){
-    assert.equal(null,err);//chequeo errores
-    const db = database.db('torneos');
-    db.collection('equiposmodels').insertOne(equipoNuevo, function(err, result){
-      assert.equal(null,err);
-      database.close();
-    });
-  });
+
   //insert players
   mongo.connect(keys.mongo.dbURI, function(err, database){
     assert.equal(null,err);//chequeo errores
     const db = database.db('torneos');
-
     db.collection("jugadoresmodels").insertMany(req.body.jugadores, function(err, res) {
       if (err) throw err;
       console.log("Number of documents inserted: " + res.insertedCount);
       database.close();
+      //insert teams
+      mongo.connect(keys.mongo.dbURI, function(err, database){
+        assert.equal(null,err);//chequeo errores
+        const db = database.db('torneos');
+        db.collection('equiposmodels').insertOne(equipoNuevo, function(err, result){
+          assert.equal(null,err);
+          database.close();
+        });
+      });
     });
   });
 

@@ -47,7 +47,7 @@
 			<div class="col-lg-2  IAWbanner"></div>
 			<div class="col-lg-8" id="contenido">
 				<!-- CONTENIDO DE LA PAGINA -->
-				<h3>{{#if result}}
+				<h3 id="torneo_nombre">{{#if result}}
 					{{result.0.nombre}}
 					{{/if}}
 				</h3>
@@ -155,7 +155,7 @@
 																		</div>
 																		<div class="modal-footer">
 																			<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-																			<button type="button" class="btn btn-primary" onclick=confirm_team('{{torneo}}')>Confirm</button>
+																			<button type="button" class="btn btn-primary" onclick=confirm_team()>Confirm</button>
 																		</div>
 																	</div>
 																</div>

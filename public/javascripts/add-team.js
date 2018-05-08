@@ -1,5 +1,9 @@
-function confirm_team(nombre_torneo){
+function confirm_team(){
   //nombre del equipo
+  var nombre_torneo = document.getElementById('torneo_nombre').innerHTML;
+  nombre_torneo = nombre_torneo.trim();
+  console.log(nombre_torneo);
+
   var equipo;
   $('#formequipo input').each(function() {
     var input = $(this);

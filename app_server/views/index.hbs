@@ -49,7 +49,7 @@
 			</ul>
 			<button class="btn btn-primary normal-mode" id="toggleButton"
 				type="submit" onclick="toggleMode()">Dark Mode</button>
-				
+
 			<a class="btn btn-primary" href="/auth/login">Login</a>
 			<!--	<button class="btn btn-primary" type="submit">Login</button>-->
 
@@ -66,7 +66,7 @@
 					<div class="list-group" id="torneosactivos">
 
 						{{#each torneos}}
-						<a onclick="" href="/torneo/{{this._id}}" class="list-group-item">
+						<a onclick="" href="/torneo/{{this.nombre}}" class="list-group-item">
 							<h4 class="list-group-item-heading">{{this.nombre}}</h4>
 							<p class="descripcion">{{this.formato}}</p>
 							<div class="torneo_slogan" style="padding-right: 0px;">
