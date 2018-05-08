@@ -40,6 +40,13 @@ hbs.registerHelper('ifCond', function(v1, v2, options) {
   return options.inverse(this);
 });
 
+hbs.registerHelper('times', function(n, block) {
+    var accum = '';
+    for(var i = 0; i < n; ++i)
+        accum += block.fn(i);
+    return accum;
+});
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

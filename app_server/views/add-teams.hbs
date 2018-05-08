@@ -53,10 +53,14 @@
 				</h3>
 
 <ul class="list-group lista_equipos" id="lista_equipos">
-<!--FALTA HACER EL #EACH QUE NO SE POR QUÉ NO ANDA-->
+
+{{#times result.0.cantTeams}}
 	<li class="list-group-item d-flex justify-content-between align-items-center">Add New Team<span class="badge badge-primary badge-pill" data-toggle="modal" data-target="#mymodal">+</span></li>
-	<li class="list-group-item d-flex justify-content-between align-items-center">Add New Team<span class="badge badge-primary badge-pill" data-toggle="modal" data-target="#mymodal">+</span></li>
+{{/times}}
 </ul>
+
+<div id="botonSave" style="padding-top: 10px" align="right">
+</div>
 
 <div>
     	<div class="modal fade" id="mymodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -120,12 +124,13 @@
 			<div class="modal-footer">
 								<button type="button" class="btn btn-secondary"
 									data-dismiss="modal">Close</button>
-								<button type="button" class="btn btn-primary" onclick=''>Confirm</button>
+								<button type="button" class="btn btn-primary" onclick='confirm_team()'>Confirm</button>
 							</div>
 						</div>
 					</div>
 				</div>
 	</script>
 	<script src="../javascripts/toggleMode.js"></script>
+	<script src="../javascripts/add-team.js"></script>
 </body>
 </html>
