@@ -31,16 +31,14 @@ router.post('/', function(req, res, next){
     const db = database.db('torneos');
     db.collection("jugadoresmodels").insertMany(req.body.jugadores, function(err, res) {
       if (err) throw err;
-      database.close();
       //insert teams
-      mongo.connect(keys.mongo.dbURI, function(err, database){
         assert.equal(null,err);//chequeo errores
         const db = database.db('torneos');
         db.collection('equiposmodels').insertOne(equipoNuevo, function(err, result){
           assert.equal(null,err);
           database.close();
         });
-      });
+
     });
   });
 
@@ -49,23 +47,16 @@ router.post('/', function(req, res, next){
 });
 
 router.post('/insert-schedule', function(req, res, next){
-
-  var equiposBD = [];
-  //obtengo coleccion equipos con el nombre del torneo
-  mongo.connect(keys.mongo.dbURI, function(err, database){
-    assert.equal(null,err);
-    const db = database.db('torneos');
-    var cursor = db.collection('equiposmodels').find({torneo: nombre_torneo});
-
-    cursor.forEach(function(doc, err){
-      assert.equal(null, err);
-      equiposBD.push(doc);//push current item
-    }, function(){
-      database.close;
-      var equipos = [];
-      for(var i = 0; i<equiposBD.length; i++){
-        equipos.push(equiposBD[i].nombre);
-      }//En equipos tengo un arreglo equipos (su nombre)
+  var equipos = [];
+  mongo.connect(keys.mongo.dbURI, function(err, db) {
+    if (err) throw err;
+    var dbo = db.db("torneos");
+    dbo.collection("equiposmodels").find({torneo: nombre_torneo}).toArray(function(err, result) {
+      if (err) throw err;
+      equipos.push(result);
+      db.close();
+      console.log(equipos);
+      res.redirect('/');//VER POR QUE NO REDIRECCIONA, SEGURO ES PORQUE NO RENDERIZA LA VIEW
 
       //CREDITOS: https://github.com/clux/roundrobin +10 fav y reco
       var robin = require('roundrobin');
@@ -73,26 +64,20 @@ router.post('/insert-schedule', function(req, res, next){
       //en schedule tengo la matriz de partidos
       //falta insertarlos en la BD
       insert_scheduleDB(schedule, equipos);
-    })
-  });//fin mongo.connect
+    });
+  });
 
-  res.status(200).end();
+  //res.status(200).end();
 
 });
 
 function insert_scheduleDB(schedule, equipos){
   //schedule es la matriz donde cada fila es una fecha y las columnas los partidos. A su vez cada partido es un arreglo de 2 elementos. [local , visitante]
-
+  console.log(schedule);
   var fechas = [];
-
   for(var i=0; i < schedule.length; i++){ //por cada fecha:
-
     var partidos = [];
-
     for(var j=0; j < schedule[i].length; j++){ // por cada partido de la fecha
-
-      console.log("schedule ");
-      console.log(schedule[i][j]);
       var partido = {
         local: schedule[i][j][0],
         visitante: schedule[i][j][1],
@@ -103,25 +88,15 @@ function insert_scheduleDB(schedule, equipos){
 
       partidos.push(partido);
     }//end for j
-
-    console.log("1era vez ");
-    console.log(partidos);
     var fecha = {
       fecha: i+1,
       torneo: nombre_torneo,
       partidos:partidos
     };
-    console.log("2da vez");
-    console.log(partidos);
-    console.log("fecha");
-    console.log(fecha);
     fechas.push(fecha);
   }//end for i
   //ya tengo el objeto listo para pushear a la BD ('fechas')
-
-  console.log("fech2");
   console.log(JSON.stringify(fechas));
-
   //insert players
   mongo.connect(keys.mongo.dbURI, function(err, database){
     assert.equal(null,err);//chequeo errores
@@ -131,6 +106,7 @@ function insert_scheduleDB(schedule, equipos){
       database.close();
     });
   }); //fin connect
+  //FALTA INSERTAR PARTIDOS
 }
 
 module.exports = router;

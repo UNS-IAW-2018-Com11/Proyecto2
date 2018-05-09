@@ -17,10 +17,10 @@ const index = function (req, res) {
 			assert.equal(null, err);
 			torneo.push(doc);//push current item
 		}, function(){
-			database.close;
-			console.log(torneo[0]);
+			//database.close();
+			//console.log(torneo[0]);
 			//obtengo coleccion equipos con el nombre del torneo
-			mongo.connect(keys.mongo.dbURI, function(err, database){
+
 				//console.log('ID: '+req.params.id);
 				assert.equal(null,err);
 				const db = database.db('torneos');
@@ -30,7 +30,7 @@ const index = function (req, res) {
 					assert.equal(null, err);
 					equipos.push(doc);//push current item
 				}, function(){
-					database.close;
+					database.close();
 					res.render('torneo', {
 						title: torneo[0].nombre,
 						torneo: torneo[0],
@@ -38,7 +38,7 @@ const index = function (req, res) {
 						fechas: {}
 					});
 				})
-			});//fin mongo.connect
+
 		})
 	});//fin mongo.connect
 };
