@@ -53,27 +53,33 @@ router.post('/insert-schedule', function(req, res, next){
     var dbo = db.db("torneos");
     dbo.collection("equiposmodels").find({torneo: nombre_torneo}).toArray(function(err, result) {
       if (err) throw err;
-      equipos.push(result);
-      db.close();
-      console.log(equipos);
-      res.redirect('/');//VER POR QUE NO REDIRECCIONA, SEGURO ES PORQUE NO RENDERIZA LA VIEW
-
+      //db.close();
+      for(var i = 0; i < result.length; i++){
+        equipos[i]=result[i].nombre;
+      }
       //CREDITOS: https://github.com/clux/roundrobin +10 fav y reco
       var robin = require('roundrobin');
       var schedule = robin(equipos.length, equipos);
       //en schedule tengo la matriz de partidos
       //falta insertarlos en la BD
-      insert_scheduleDB(schedule, equipos);
+      console.log(schedule);
+      var fechas = insert_scheduleDB(schedule, equipos, db);
+
+      assert.equal(null,err);//chequeo errores
+      const dbo = db.db('torneos');
+      dbo.collection("fechasmodels").insertMany(fechas, function(err, res) {
+        if (err) throw err;
+        db.close();
+      });
     });
   });
 
-  //res.status(200).end();
+  res.status(200).end();
 
 });
 
 function insert_scheduleDB(schedule, equipos){
   //schedule es la matriz donde cada fila es una fecha y las columnas los partidos. A su vez cada partido es un arreglo de 2 elementos. [local , visitante]
-  console.log(schedule);
   var fechas = [];
   for(var i=0; i < schedule.length; i++){ //por cada fecha:
     var partidos = [];
@@ -85,7 +91,6 @@ function insert_scheduleDB(schedule, equipos){
         puntosVisitante:0,
         estado:'pendiente'
       };
-
       partidos.push(partido);
     }//end for j
     var fecha = {
@@ -96,17 +101,7 @@ function insert_scheduleDB(schedule, equipos){
     fechas.push(fecha);
   }//end for i
   //ya tengo el objeto listo para pushear a la BD ('fechas')
-  console.log(JSON.stringify(fechas));
-  //insert players
-  mongo.connect(keys.mongo.dbURI, function(err, database){
-    assert.equal(null,err);//chequeo errores
-    const db = database.db('torneos');
-    db.collection("fechasmodels").insertMany(fechas, function(err, res) {
-      if (err) throw err;
-      database.close();
-    });
-  }); //fin connect
-  //FALTA INSERTAR PARTIDOS
+  return fechas;
 }
 
 module.exports = router;

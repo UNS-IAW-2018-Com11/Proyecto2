@@ -59,7 +59,7 @@
 											</thead>
 											<tbody id="table-posiciones">
 											{{#each equipos as |item index|}}
-												<tr><td>{{inc @index}}</td><td><a href="" onclick="">{{this.nombre}}</a></td><td>{{this.GP}}</td><td>{{this.W}}</td><td>{{this.L}}</td><td>{{this.PF}}</td><td>{{this.PC}}</td><td>{{this.Pts}}</td></tr>
+												<tr><td>{{inc @index}}</td><td><a href="/team/{{this.nombre}}" onclick="">{{this.nombre}}</a></td><td>{{this.GP}}</td><td>{{this.W}}</td><td>{{this.L}}</td><td>{{this.PF}}</td><td>{{this.PC}}</td><td>{{this.Pts}}</td></tr>
 											{{/each}}
 											</table>
 									</div>

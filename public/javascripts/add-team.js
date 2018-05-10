@@ -2,7 +2,7 @@ function confirm_team(){
   //nombre del equipo
   var nombre_torneo = document.getElementById('torneo_nombre').innerHTML;
   nombre_torneo = nombre_torneo.trim();
-  
+
   var equipo;
   $('#formequipo input').each(function() {
     var input = $(this);
@@ -10,12 +10,6 @@ function confirm_team(){
   });
 
   //obtengo los jugadores
-  var jugador = {
-    nombre:'',
-    DNI:'',
-    edad: 0,
-  }
-
   var json_equipo = {
     nombre:equipo,
     GP:0,
@@ -33,17 +27,25 @@ function confirm_team(){
       var input = $(this);
       switch (input.attr('name')) {
         case "fname":
-        jugador.nombre = input.val();
+        var jnombre = input.val();
         break;
         case "dni":
-        jugador.DNI = input.val();
+        var jdni = input.val();
         break;
         case "edad":
-        edad = input.val();
-        jugador.edad = edad;
-        json_equipo.jugadores.push(jugador);
+        var jedad = input.val();
+
+        var player = {
+          nombre: jnombre,
+          DNI: jdni,
+          edad: jedad
+        };
+
+        json_equipo.jugadores.push(player);
       }
     });
+
+    console.log(json_equipo);
 
     // construct an HTTP request
     var xhr = new XMLHttpRequest();

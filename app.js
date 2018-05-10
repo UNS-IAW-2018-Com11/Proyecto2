@@ -18,6 +18,7 @@ var usersRouter = require('./app_server/routes/users');
 var authRouter = require('./app_server/routes/auth');
 var adminRouter = require('./app_server/routes/admin');
 var addTeamsRouter = require('./app_server/routes/add-teams');
+var teamRouter = require('./app_server/routes/team');
 
 require('./app_server/models/db');
 
@@ -51,7 +52,7 @@ app.use('/users', usersRouter);
 app.use('/auth', authRouter);
 app.use('/admin', adminRouter);
 app.use('/add-teams', addTeamsRouter);
-
+app.use('/team', teamRouter);
 /*
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
