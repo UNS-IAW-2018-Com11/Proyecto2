@@ -34,7 +34,7 @@
 				<li class="nav-item active"><a class="nav-link"
 					href="/">Home <span class="sr-only">(current)</span>
 				</a></li>
-				<li class="nav-item"><a class="nav-link"  onclick="alert('Tournament Generator IAW 2018 Beta')">About</a></li>
+				<li class="nav-item"><a class="nav-link" style="color: white" onclick="alert('Tournament Generator IAW 2018 Beta')">About</a></li>
 				<li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
 			</ul>
 			<button class="btn btn-primary normal-mode" id="toggleButton"
@@ -66,7 +66,7 @@
 											<tbody id="table-posiciones">
 												{{#each jugadores}}
 												<tr>
-													<td>{{equipo}}</td>
+													<td>{{../equipo}}</td>
 													<td>
 														<a>{{this.nombre}}</a>
 													</td>
