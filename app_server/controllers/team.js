@@ -10,11 +10,10 @@ const index = function(req, res){
 
 		dbo.collection("equiposmodels").find({nombre: req.params.id}).toArray(function(err, result) {
 			if (err) throw err;
-      equipo = result;
       db.close();
       res.render('equipo',{
-        equipo: equipo.nombre,
-        jugadores:  equipo.jugadores
+        equipo: result[0].nombre,
+        jugadores:  result[0].jugadores
       });
 		});
   });
