@@ -7,9 +7,9 @@ function confirm_team(){
   $('#formequipo input').each(function() {
     var input = $(this);
     equipo = input.val();
-  });
+});
 
-  //obtengo los jugadores
+
   var json_equipo = {
     nombre:equipo,
     GP:0,
@@ -22,30 +22,40 @@ function confirm_team(){
     jugadores:[]
   };
 
-  $('#modalForm input').each(
-    function() {
-      var input = $(this);
-      switch (input.attr('name')) {
-        case "fname":
-        var jnombre = input.val();
-        break;
-        case "dni":
-        var jdni = input.val();
-        break;
-        case "edad":
-        var jedad = input.val();
+  var divsjugador = document.getElementsByClassName("jugador");
 
-        var player = {
-          nombre: jnombre,
-          DNI: jdni,
-          edad: jedad
-        };
+  var arrayJugadores = Array.prototype.slice.call(divsjugador);
 
-        json_equipo.jugadores.push(player);
-      }
+  arrayJugadores.forEach(function(player)
+  {
+
+      var jugador = {
+        nombre:'',
+        DNI:'',
+        edad: 0,
+      };
+      var inputs = player.getElementsByTagName("input");
+      var inputList = Array.prototype.slice.call(inputs);
+      inputList.forEach(function(input){
+
+          switch (input.name){
+            case "fname":{
+            jugador.nombre = input.value;
+            }
+            break;
+            case "dni":
+            jugador.DNI = input.value;
+            break;
+            case "edad":
+            jugador.edad = input.value;
+          }
+
+      });
+      json_equipo.jugadores.push(jugador);
     });
 
     console.log(json_equipo);
+
 
     // construct an HTTP request
     var xhr = new XMLHttpRequest();
