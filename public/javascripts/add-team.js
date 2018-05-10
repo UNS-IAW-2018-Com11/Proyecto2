@@ -104,6 +104,12 @@ function confirm_team(){
     // construct an HTTP request
     var xhr = new XMLHttpRequest();
 
+    xhr.onreadystatechange = function() { // listen for state changes
+      if (xhr.readyState == 4 && xhr.status == 200) { // when completed we can move away
+        window.location = "/";
+      }
+    }
+
     var URL = '/add-teams/insert-schedule';
     xhr.open('POST', URL, true);
 
