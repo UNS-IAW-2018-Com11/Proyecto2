@@ -100,6 +100,7 @@ function insert_scheduleDB(schedule, equipos){
     fechas.push(fecha);
   }//end for i
   //ya tengo el objeto listo para pushear a la BD ('fechas')
+  console.log(fechas);
   return fechas;
 }
 

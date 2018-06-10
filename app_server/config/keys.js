@@ -6,6 +6,7 @@ module.exports = {
 		clientSecret:'LdpZc9-_a4AC_M333PVwN8FP'
 	},
 	mongo:{
+		//dbURI: "mongodb://localhost:27017/torneos"
 		dbURI: 'mongodb://IAW2018:1234@ds117250.mlab.com:17250/torneos'
 	},
 	session:{
